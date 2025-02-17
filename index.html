@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="node_modules\@flaticon\flaticon-uicons\css\bold\rounded.css">
+    <script src="render.js"></script>
+    <title>Journal</title>
+</head>
+
+<body>
+    <a> <i class="fi fi-br-arrow-left-from-line sidebar-toggle"></i> </a>
+    <div class="sidebar">
+        <h3> Navigation </h3>
+        <ul>
+            <li> <a class="navButton" data-target="newEntry"> new entry </a></li>
+            <li> <a class="navButton" data-target="previousEntries"> previous entries </a></li>
+        </ul>
+        <ul>
+            <li> <a class="navButton" data-target="settings"> settings </a></li>
+            <li> <a class="versionnumber"> version number 0.1 </a></li>
+        </ul>
+    </div>
+
+    <div class="content active" id="newEntry">
+        <div class="top">
+            <h1> New Entry </h1>
+            <button id="createEntryButton"> save </button>
+        </div>
+
+        <input placeholder="Input Title" type="text" class="entryInput title entryTitleInput">
+        <textarea placeholder="Start writing here!" class="entryInput entryContentInput"></textarea>
+    </div>
+
+    <div class="content" id="previousEntries">
+        <div class="top">
+            <h1> Previous Entries </h1>
+        </div>
+        <div id="entries">
+        </div>
+    </div>
+
+    <div class="content" id="settings">
+        <div class="top">
+            <h1> Settings </h1>
+        </div>
+
+        <div class="settingsList">
+            <div class="setting">
+                <label for="theme">Theme:</label>
+                <select name="theme" id="themeSelect">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="system">System</option>
+                </select>
+            </div>
+            <div class="setting">
+                <label for="font">Font:</label>
+                <select name="font" id="fontSelect">
+                    <option value="inter">Inter (default)</option>
+                    <option value="comicsans">Comic Sans</option>
+                    <option value="opendyslexic">OpenDyslexic</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
