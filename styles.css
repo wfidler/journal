@@ -1,6 +1,25 @@
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("fonts/OpenDyslexic-Regular.woff2") format("woff2"),
+    url("fonts/OpenDyslexic-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body.opendyslexic {
+  font-family: "OpenDyslexic", sans-serif;
+}
+
+body.comicsans {
+  font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+}
+
 :root {
   color-scheme: light dark;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   line-height: 24px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -36,6 +55,7 @@ body {
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .sidebar {
@@ -257,14 +277,13 @@ textarea {
   flex-direction: column;
   background-color: var(--background-tertiary);
   margin: 0 2rem 1rem 2rem;
-  padding: 0.75rem 1rem 0.75rem 1rem;
+  padding: 0.25rem 1rem 0.75rem 1rem;
   width: auto;
   height: auto;
   border-radius: 8px;
 }
 
 .entryHeading {
-  height: 3rem;
   width: 100%;
   display: flex;
   vertical-align: middle;
@@ -343,6 +362,7 @@ textarea {
 }
 
 select {
+  font-family: inherit;
   background-color: var(--background-primary);
   color: var(--text-primary);
   padding: 0.5em 1em;

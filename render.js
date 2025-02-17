@@ -5,6 +5,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const themeSelect = document.getElementById("themeSelect");
   const createEntryButton = document.getElementById("createEntryButton");
   const navButtons = document.querySelectorAll(".navButton");
+  const fontSelect = document.getElementById("fontSelect");
+
+  function getCurrentFont() {
+    const curFont = getComputedStyle(document.body)
+      .getPropertyValue("font-family")
+      .trim();
+
+    if (curFont.includes("OpenDyslexic")) return "opendyslexic";
+    if (curFont.includes("Comic Sans")) return "comicsans";
+    return "inter";
+  }
+
+  function setFont(font) {
+    document.body.classList.remove("inter", "comicsans", "opendyslexic");
+    document.body.classList.add(font);
+    localStorage.setItem("font", font);
+  }
+
+  const savedFont = localStorage.getItem("font") || getCurrentFont();
+  setFont(savedFont);
+  fontSelect.value = savedFont;
+
+  fontSelect.addEventListener("change", (event) => {
+    setFont(event.target.value);
+  });
 
   function checkContentWidth() {
     if (window.innerWidth < 600) {
@@ -27,16 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (isSmallScreen) {
       const isFullscreen = sidebar.classList.contains("fullscreen");
-
-      if (isFullscreen) {
-        sidebar.classList.remove("fullscreen");
-        sidebar.classList.add("closed");
-        document.body.classList.remove("no-scroll");
-      } else {
-        sidebar.classList.add("fullscreen");
-        sidebar.classList.remove("closed");
-        document.body.classList.add("no-scroll");
-      }
+      sidebar.classList.toggle("fullscreen", !isFullscreen);
+      sidebar.classList.toggle("closed", isFullscreen);
+      document.body.classList.toggle("no-scroll", !isFullscreen);
     } else {
       sidebar.classList.toggle("closed");
       mainContents.forEach((content) => content.classList.toggle("expanded"));
@@ -53,10 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (colorScheme.includes("light") && colorScheme.includes("dark"))
       return "system";
-    if (colorScheme.includes("light")) return "light";
-    if (colorScheme.includes("dark")) return "dark";
-
-    return "system";
+    return colorScheme.includes("light") ? "light" : "dark";
   }
 
   function setTheme(theme) {
@@ -83,11 +98,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  navButtons.forEach((button) =>
+  navButtons.forEach((button) => {
     button.addEventListener("click", () =>
       showPage(button.getAttribute("data-target"))
-    )
-  );
+    );
+  });
 });
 
 function showPage(pageId) {

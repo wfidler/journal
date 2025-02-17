@@ -6,6 +6,6 @@ Simple apps for journaling these days are riddled with bells, whistles and ads. 
 
 - [x] Add entry deletion
 - [x] Add entry editing
-- [ ] Add light theme
+- [X] Add light theme
 - [ ] Add custom font support
 - [ ] Add entry categories

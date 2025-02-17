@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog, shell } = require("electron");
 const path = require("path");
 const { initializeDatabase } = require("./models");
 
@@ -21,6 +21,11 @@ function createWindow() {
   });
 
   win.loadFile("index.html");
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: "deny" };
+  });
 }
 
 app.whenReady().then(async () => {
